@@ -2,6 +2,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
+import { Button } from '@mui/material';
 
 const useStyles = makeStyles({
     textField: {
@@ -18,12 +21,25 @@ const useStyles = makeStyles({
         height: '100%'
     }
 });
-
+const buttonBorder = {
+    border: '1px solid black',
+    backgroundColor: 'red'
+}
 export default function BasicTextFields() {
   const classes = useStyles();
-  return (
+
+  const SearchButton = () => (
+
+        <SearchIcon fontSize="large"/>
+      
     
-      <TextField id="outlined-basic" label="Search Todays News" variant="outlined" margin="none" className={classes.textField}  InputProps={{ className: classes.input }}/>
+    )
+  return (
+      <form action="">
+            <TextField id="outlined-basic" label="Search Todays News" variant="outlined" margin="none" className={classes.textField}  InputProps={{ className: classes.input, endAdornment: <SearchButton /> }}/>
+    
+      </form>
+    
     
   );
 }

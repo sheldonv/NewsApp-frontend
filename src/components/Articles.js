@@ -6,10 +6,15 @@ import { Typography } from '@mui/material';
 import './Articles.css'
 import { flexbox } from '@mui/system';
 import SaveIcon from '@mui/icons-material/Save';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Axios from 'axios'
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     cardImage: {
-      [theme.breakpoints.up(0)]: {
+      [theme.breakpoints.up(0)]: { 
         height: 70,
       },
       [theme.breakpoints.up(350)]: {
@@ -57,25 +62,40 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'right'
     }
   }));
-
+  const SearchButton = () => (
+    <IconButton>
+      <SearchIcon fontSize="large"/>
+    </IconButton>
+    )
 const Articles = (props) => {
     const [articleTitle, setArticleTitle] = useState('');
     const classes = useStyles();
-    let title = props.title.lastIndexOf('-');
-    title = props.title.slice(0, title);
-    
+    let title = null;
+    if(props.title.includes('-')){
+      title = props.title.lastIndexOf('-');
+      title = props.title.slice(0, title);
+    }else{
+      title = props.title
+    }
+    //creating a function that saves the article to the Database
+    let axiosConfig = {
+     
+    };
+    const saveArticle = async (e) => {
+      e.preventDefault();
+      const response = await axios.post('http://localhost:3000/user/save', props.save)
+    }
 
-    console.log(title)
-    return (
+    return ( 
       <Grid xs={6} sm={4} lg={3} item>
         <Card className="articleCard">
-          <CardMedia className="cardMedia">
+          <CardMedia className="cardMedia"> 
             <div className={`${classes.cardImage} articleImage`}>
               <img src={props.image} alt="" />
             </div>
           </CardMedia>
           <CardContent>
-            <Typography variant="h5" gutterBottom component="div">
+            <Typography variant="" gutterBottom component="div">
               {title}
             <Typography className={classes.source} component="div">
               {props.source}
@@ -85,7 +105,7 @@ const Articles = (props) => {
           </CardContent>
           <CardActions className={classes.cardActions} >
             <Button href={props.url}>read more</Button>
-            <Button variant="contained" startIcon={<SaveIcon />} color="secondary">Save</Button>
+            <Button variant="contained" startIcon={<SaveIcon />} color="secondary" onClick={(e) => saveArticle(e)}>Save</Button>  
           </CardActions>
         </Card>
       </Grid>
