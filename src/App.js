@@ -32,7 +32,7 @@ function MyApp() {
   const colorMode = React.useContext(ColorModeContext);
   const Auth = useContext(authContext);
 
-  const logOut = useCallback(() => {
+  const logOut = useCallback(() => { 
     setLoggedIn(false)
   }, [])
 
@@ -42,7 +42,7 @@ function MyApp() {
 
 
   useEffect(async () => {
-    const response = await fetchData('http://localhost:3000/user');
+    const response = await fetchData(`${process.env.REACT_APP_BACKEND_URL}/user`);
     const responseData = await response.json();
 
     if (responseData) {
@@ -72,6 +72,7 @@ function MyApp() {
           color: 'text.primary',
           borderRadius: 1,
           p: 3,
+          paddingBottom: '0px',
           flexDirection: 'column'
         }}
       >
@@ -110,7 +111,7 @@ export default function ToggleColorMode() {
   const toggleColorMode = () => {
     setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
-
+  
  
   React.useMemo(
     () => ({

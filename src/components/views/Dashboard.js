@@ -86,7 +86,7 @@ const Dashboard = () => {
     const handleClose = () => setOpen(false);
   useEffect(async () => {
     // send GET request to backend to get User Profile
-    const response = await fetchData('http://localhost:3000/user');
+    const response = await fetchData(`${process.env.REACT_APP_BACKEND_URL}/user`);
     const responseData = await response.json();
     setUser(responseData)
     // check if the dashboard has been initialized if not then open up modal
@@ -122,7 +122,7 @@ const Dashboard = () => {
         if(categories.length > 0){
           const categoryString = categories.join('x');
           const response = await fetchData(
-            `http://localhost:3000/news/categories/?categories=${categoryString}&id=${user._id}`
+            `${process.env.REACT_APP_BACKEND_URL}/news/categories/?categories=${categoryString}&id=${user._id}`
           );
           const responseData = await response.json();
           const categoryArray = responseData.categories.split('x');
@@ -130,7 +130,7 @@ const Dashboard = () => {
           setCategoryButtons(categoryArray);
           if (responseData.categories !== null) {
             const response = await fetchData(
-              `http://localhost:3000/users/dashboardinit/?id=${user._id}`
+              `${process.env.REACT_APP_BACKEND_URL}/users/dashboardinit/?id=${user._id}`
             );
             const responseData = await response.json();
             
@@ -144,7 +144,7 @@ const Dashboard = () => {
     }
     // Creating a function to fetch the data pertaining to the selected category
     const fetchCategory = async (category) => {
-        const response = await fetchData(`http://localhost:3000/news/category/?category=${category}`)
+        const response = await fetchData(`${process.env.REACT_APP_BACKEND_URL}/news/category/?category=${category}`)
         const responseData = await response.json();
         setCategoryData([])
         setCategoryData(responseData.articles)

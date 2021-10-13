@@ -54,7 +54,7 @@ const HomePage = (props) => {
     }
     // intiate useEffect to get Headlines news upon page load
     useEffect( async () => {
-        const response = await fetchNews('http://localhost:3000/news/headlines');
+        const response = await fetchNews(`${process.env.REACT_APP_BACKEND_URL}/news/headlines`);
         const responseData = await response.json();
         setArticles(responseData.articles)
         
@@ -65,7 +65,7 @@ const HomePage = (props) => {
     }
     const searchNews = async (e) => {
         e.preventDefault();
-        const response = await fetchNews(`http://localhost:3000/news/search/?query=${query}`);
+        const response = await fetchNews(`${process.env.REACT_APP_BACKEND_URL}/news/search/?query=${query}`);
         const responseData = await response.json()
         setArticles(responseData.articles)
     }

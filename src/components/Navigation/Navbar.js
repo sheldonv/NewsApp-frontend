@@ -27,7 +27,10 @@ import Cloud from '@mui/icons-material/Cloud';
 import { margin } from '@mui/system';
 import ColorModeContext from '../../context/ColorModeContext';
 import SwipeableTemporaryDrawer from './SideDrawer';
-
+import { createMuiTheme } from '@material-ui/core/styles';
+import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
+import purple from '@material-ui/core/colors/purple';
+import green from '@material-ui/core/colors/green';
 const options = [
   'None',
   'Atria',
@@ -47,7 +50,9 @@ const options = [
 
 const ITEM_HEIGHT = 90;
 
-const useStyles = makeStyles({
+
+
+const useStyles = makeStyles((theme) => ({
   viewOptionsTitle: {
     fontSize: '1em',
     fontWeight: 'bold',
@@ -78,8 +83,20 @@ const useStyles = makeStyles({
   },
   appHeader: {
     paddingRight: '0px !important',
+    color: 'secondary',
+    backgoundColor: 'red'
   },
-});
+  abRoot: {
+    backgroundColor: "red"
+  },
+  abStatic: {
+    border: "solid blue 2px"
+  }
+}));
+
+
+
+
 
 const Navbar = () => {
   const [login, setLogin] = useState(false);
@@ -90,6 +107,9 @@ const Navbar = () => {
   const colorMode = React.useContext(ColorModeContext);
   const [openDrawer, setOpenDrawer] = useState(false);
 
+  
+  
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -99,8 +119,13 @@ const Navbar = () => {
   const changeColor = () => {
     colorMode.toggleColorMode();
   };
+  let appColor;
+  if(colorMode.color == 'light'){
+    appColor = '#989890'
+  }
+  
   return (
-    <AppBar position="fixed" className={classes.appHeader}>
+    <AppBar position="fixed"  className={classes.root} sx={{backgroundColor: appColor}}>
       <Toolbar>
         <SwipeableTemporaryDrawer >
           <IconButton

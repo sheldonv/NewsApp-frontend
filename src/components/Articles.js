@@ -83,7 +83,7 @@ const Articles = (props) => {
     };
     const saveArticle = async (e) => {
       e.preventDefault();
-      const response = await axios.post('http://localhost:3000/user/save', props.save)
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/save`, props.save)
     }
 
     return ( 
