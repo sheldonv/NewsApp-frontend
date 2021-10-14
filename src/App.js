@@ -44,9 +44,10 @@ function MyApp() {
   useEffect(async () => {
     const response = await fetchData(`${process.env.REACT_APP_BACKEND_URL}/user`);
     const responseData = await response.json();
-
+    console.log(responseData)
     if (responseData) {
       if (responseData.firstName) {
+        console.log(responseData)
         Auth.logIn()
       }
       if (responseData.firstVisit == true) {
