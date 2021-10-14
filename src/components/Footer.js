@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         backgroundColor: 'background.default',
         padding: '.5rem',
-        width: '100%',
+        width: '95%',
         flexDirection: 'column'
     },
     footerTop: {
@@ -49,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         marginTop: '1rem',
         height: '1px',
+        border: '0',
+        borderTop: '1px solid orange',
         [theme.breakpoints.up('600')]: {
        
             margin: '0px'
@@ -96,7 +98,7 @@ const Footer = (props) => {
     <>
       
       <div className={classes.footer}>
-          <hr className={classes.divider} />
+          
         <div className={classes.footerTop}>
           <div className={classes.socialFooter}>
             <span>HOME</span>

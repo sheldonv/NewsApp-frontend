@@ -29,11 +29,14 @@ const useStyles = makeStyles({
         paddingBottom: 10,
         marginTop: '0',
         fontWeight: 500,
+        
     },
     input: {
         color: 'black',
         fontSize: '2em',
-        height: '100%'
+        height: '100%',
+        outline: 'none',
+        border: '1px solid darkorange'
     },
     searchIcon: {
       
@@ -80,6 +83,7 @@ const HomePage = (props) => {
         const responseData = await response.json()
         setArticles(responseData.articles)
     }
+    const gridRowStyling = {'& > div:not(:nth-child(4n))::after' : {width: '100%'}}
     return (
       <Container>
         <div className="welcome"><h3>Todays Headlines</h3></div>
@@ -105,7 +109,7 @@ const HomePage = (props) => {
             />
           </form>
         </div>
-        <Grid  id="articlesGrid" container columnSpacing={2} rowSpacing={5} direction="row-reverse" >
+        <Grid  id="articlesGrid" container columnSpacing={2} rowSpacing={5}  sx={{gridRow: gridRowStyling}} >
           {articles.map((article) => {
             return (
               <Articles

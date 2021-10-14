@@ -187,11 +187,11 @@ const Navbar = () => {
           NewsPinger
         </Typography>
         {auth.loggedIn ? (
-          <Button color="inherit" href="http://localhost:3000/auth/logout">
+          <Button color="inherit" href={`${process.env.REACT_APP_BACKEND_URL}/auth/logout`}>
             Logout
           </Button>
         ) : (
-          <Button color="inherit" href="http://localhost:3000/auth/google">
+          <Button color="inherit" href={`${process.env.REACT_APP_BACKEND_URL}/auth/google`}>
             Login
           </Button>
         )}
