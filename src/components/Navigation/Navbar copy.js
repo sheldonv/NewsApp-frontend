@@ -161,7 +161,6 @@ const Navbar = () => {
   }
   
   return (
-    <>
     <AppBar position="fixed"  className={classes.root} sx={{backgroundColor: appColor}}>
       <Toolbar>
         <SwipeableTemporaryDrawer >
@@ -206,39 +205,42 @@ const Navbar = () => {
           >
             <MoreVertIcon />
           </IconButton>
-          
+          <Menu
+            id="long-menu"
+            MenuListProps={{
+              'aria-labelledby': 'long-button',
+            }}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            PaperProps={{
+              style: {
+                maxHeight: ITEM_HEIGHT * 4.5,
+                width: '24ch',
+              },
+            }}
+            className={classes.menu}
+          >
+            <div>
+              <span className={classes.viewOptionsTitle}>View Options</span>
+              <MenuItem>
+                <ListItemIcon className={classes.menuIcon}>
+                  <SettingsBrightnessRoundedIcon fontSize="large" />
+                </ListItemIcon>
+                DarkMode
+                <ListItemButton>
+                  <Switch
+                    onChange={() => {
+                      changeColor();
+                    }}
+                  />
+                </ListItemButton>
+              </MenuItem>
+            </div>
+          </Menu>
         </div>
       </Toolbar>
     </AppBar>
-    <StyledMenu
-        id="demo-customized-menu"
-        MenuListProps={{
-          'aria-labelledby': 'demo-customized-button',
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={handleClose} disableRipple sx={{paddingLeft: '1.5rem'}}>
-          
-              View Options
-          
-          
-        </MenuItem>
-        <Divider />
-        <MenuItem onClick={handleClose} disableRipple>
-        <Switch
-      checked={checked}
-      onChange={() => {
-        changeColor();
-      }}
-      inputProps={{ 'aria-label': 'controlled' }}
-    />
-    DarkMode
-        </MenuItem>
-        
-      </StyledMenu>
-    </>
   );
 };
 

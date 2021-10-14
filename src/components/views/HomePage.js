@@ -8,11 +8,11 @@ import { makeStyles } from '@mui/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import { TextField } from '@mui/material';
 import ColorModeContext from '../../context/ColorModeContext';
-
+import { GridApi } from '@mui/x-data-grid-pro';
 
 
 const fetchNews = async (url) => {
-    const response = await fetch(url, {
+    const response = await fetch(url, { 
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -59,6 +59,17 @@ const HomePage = (props) => {
         setArticles(responseData.articles)
         
     }, [])
+
+    useEffect(() => {
+      const articleGrid = document.getElementById('articlesGrid')
+      console.log(articleGrid)
+      articleGrid.onload = () => {
+        console.log(articleGrid)
+      };
+      articleGrid.onload();
+    }, [query])
+    
+
     const updateQuery = (e) => {
         
         setQuery(e.target.value)
@@ -94,7 +105,7 @@ const HomePage = (props) => {
             />
           </form>
         </div>
-        <Grid container columnSpacing={2} rowSpacing={3}>
+        <Grid  id="articlesGrid" container columnSpacing={2} rowSpacing={5} direction="row-reverse" >
           {articles.map((article) => {
             return (
               <Articles

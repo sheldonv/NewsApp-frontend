@@ -87,7 +87,7 @@ const Articles = (props) => {
     }
 
     return ( 
-      <Grid xs={6} sm={4} lg={3} item>
+      <Grid xs={12} sm={4} lg={3} item gridRow={{border: '1px solid red'}} sx={{gridRow: { borderBottom: '1px solid orange', paddingBottom: '2rem'}}}>
         <Card className="articleCard">
           <CardMedia className="cardMedia"> 
             <div className={`${classes.cardImage} articleImage`}>
