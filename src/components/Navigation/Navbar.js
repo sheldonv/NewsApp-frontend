@@ -154,6 +154,7 @@ const Navbar = () => {
   };
   const changeColor = () => {
     colorMode.toggleColorMode();
+    console.log(auth.loggedIn)
   };
   let appColor;
   if(colorMode.color == 'light'){

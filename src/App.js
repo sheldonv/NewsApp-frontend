@@ -25,36 +25,24 @@ const fetchData = async (url) => {
 
 function MyApp() {
   const [user, setUser] = useState({});
-  const [loggedIn, setLoggedIn] = useState(false);
   const [firstVisit, setFirstVisit] = useState(false);
   const [articles, setArticles] = useState([]);
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
   const Auth = useContext(authContext);
 
-  const logOut = useCallback(() => { 
-    setLoggedIn(false)
-  }, [])
-
-  const logIn = useCallback(() => {
-    setLoggedIn(true)
-  }, [])
+  
 
 
   useEffect(async () => {
     const response = await fetchData(`${process.env.REACT_APP_BACKEND_URL}/user`);
     const responseData = await response.json();
-    console.log(responseData)
+
     if (responseData) {
       if (responseData.firstName) {
-        console.log(responseData)
         Auth.logIn()
       }
-      if (responseData.firstVisit == true) {
-        setFirstVisit(responseData.firstVisit);
-      } else {
-        setFirstVisit(responseData.firstVisit);
-      }
+
 
       setUser(responseData);
     }
@@ -78,28 +66,20 @@ function MyApp() {
         }}
       >
         <Router>
-          <authContext.Provider
-            value={{
-              loggedIn: loggedIn,
-              logOut: logOut,
-              firstVisit: firstVisit,
-              logIn: logIn
-            }}
-          >
+         
             <Navbar />
             
             <Switch>
               <Route path="/" exact>
                 <HomePage />
               </Route>
-              {loggedIn && <Route path="/dashboard" exact>
+              {<Route path="/dashboard" exact>
                 <Dashboard />
               </Route>}
               <Redirect to="/" exact/>
               
             </Switch> 
             <Footer />         
-            </authContext.Provider>
         </Router>
       </Box>
     </>
@@ -108,9 +88,35 @@ function MyApp() {
 
 export default function ToggleColorMode() {
   const [mode, setMode] = React.useState('dark');
+  const [loggedIn, setLoggedIn] = useState(false);
+  const auth = useContext(authContext);
+  const [user, setUser] = useState({});
+  useEffect(async () => {
+    const response = await fetchData(`${process.env.REACT_APP_BACKEND_URL}/user`);
+    const responseData = await response.json();
+
+    if (responseData) {
+      if (responseData.firstName) {
+        auth.logIn()
+      }
+
+
+      setUser(responseData);
+    }
+  }, []);
+
+  const logOut = useCallback(() => { 
+    alert(auth.loggedIn)
+    setLoggedIn(false)
+  }, [])
+
+  const logIn = useCallback(() => {
+    setLoggedIn(true)
+  }, [])
 
   const toggleColorMode = () => {
     setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+    
   };
   
  
@@ -132,13 +138,22 @@ export default function ToggleColorMode() {
   );
 
   return (
+    <authContext.Provider
+    value={{
+      loggedIn: loggedIn,
+      logOut: logOut,
+      logIn: logIn
+    }}
+  >
     <ColorModeContext.Provider
       value={{ toggleColorMode: toggleColorMode, color: mode }}
     >
+      
       <ThemeProvider theme={theme}>
         <MyApp />
       </ThemeProvider>
     </ColorModeContext.Provider>
+    </authContext.Provider>
   );
 }
 
