@@ -12,7 +12,7 @@ import { CssBaseline } from '@material-ui/core';
 import Footer from './components/Footer';
 import dotenv from 'dotenv'
 
-dotenv.config({path: ''}) 
+
 
 const fetchData = async (url) => {
   const response = await fetch(url, {

@@ -91,7 +91,7 @@ const Dashboard = () => {
     setUser(responseData)
     // check if the dashboard has been initialized if not then open up modal
     if(responseData){
-      alert('response froze Dashboard')
+      
     
     if(responseData.dashboardInit === false){
         handleOpen();
