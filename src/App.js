@@ -25,11 +25,6 @@ const fetchData = async (url) => {
 }
 
 function MyApp() {
-  const [user, setUser] = useState({});
-  const [firstVisit, setFirstVisit] = useState(false);
-  const [articles, setArticles] = useState([]);
-  const theme = useTheme();
-  const colorMode = React.useContext(ColorModeContext);
   const Auth = useContext(authContext);
 
   
@@ -46,7 +41,7 @@ function MyApp() {
       }
 
 
-      setUser(responseData);
+      
     }
   }, []);
   
