@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         backgroundColor: 'background.default',
         padding: '.5rem',
-        width: '95%',
+        width: '96%',
         flexDirection: 'column'
     },
     footerTop: {

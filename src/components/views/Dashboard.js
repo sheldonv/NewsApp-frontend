@@ -164,11 +164,12 @@ const Dashboard = () => {
     const fetchSaved = () => {
       setCategoryData(user.articles)
     }
+    const gridRowStyling = {'& > div:not(:nth-child(4n))::after' : {width: '100%'}}
   return (
     <div>
       <h1 className="welcome">Dashboard</h1> 
       <Container>
-        <Grid container spacing={2}>
+        <Grid id="articlesGrid" container columnSpacing={2} rowSpacing={5}  sx={{gridRow: gridRowStyling}}>
           {categoryButtons.map((category) => {
             return (
               <Grid item xs={6} className={classes.gridItem}>
@@ -268,7 +269,7 @@ const Dashboard = () => {
       </Modal>
       <Container className="articlesConsole">
         {categoryData.articles}
-        <Grid container columnSpacing={2} rowSpacing={3}>
+        <Grid id="articlesGrid" container columnSpacing={2} rowSpacing={5}  sx={{gridRow: gridRowStyling}}>
                 {categoryData.map((article) => {
                     return <Articles image={article.urlToImage} title={article.title} url={article.url} source={article.source.name} description={article.description} save={article}/>
                 })}

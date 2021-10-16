@@ -82,12 +82,13 @@ const Articles = (props) => {
      
     };
     const saveArticle = async (e) => {
+      console.log('reached')
       e.preventDefault();
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/save`, props.save)
     }
 
     return ( 
-      <Grid xs={12} sm={4} lg={3} item sx={{gridRow: { borderBottom: '', position: 'relative', paddingBottom: '2rem', '&::after': { content: '"dfdfdfdfd"', position: 'absolute', width: '94.8%', height: '90%', backgroundColor: 'transparent', borderBottom: '1px solid orange', display: 'block', zIndex: 100, top: '10%'}}}} >
+      <Grid xs={12} sm={4} lg={3} item style={{zIndex: '10'}} sx={{ gridRow: { borderBottom: '', position: 'relative', paddingBottom: '2rem', '&::after': { content: '"dfdfdfdfd"', position: 'absolute', width: '94.8%', height: '90%', backgroundColor: 'transparent', borderBottom: '1px solid orange', display: 'block', zIndex: '-1', top: '10%'}}}} >
         <Card className="articleCard">
           <CardMedia className="cardMedia"> 
             <div className={`${classes.cardImage} articleImage`}>
