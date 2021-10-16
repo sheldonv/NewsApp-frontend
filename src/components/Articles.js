@@ -8,8 +8,6 @@ import { flexbox } from '@mui/system';
 import SaveIcon from '@mui/icons-material/Save';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import Axios from 'axios'
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -78,11 +76,9 @@ const Articles = (props) => {
       title = props.title
     }
     //creating a function that saves the article to the Database
-    let axiosConfig = {
-     
-    };
+    
     const saveArticle = async (e) => {
-      console.log('reached')
+      console.log()
       e.preventDefault();
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/save`, props.save)
     }

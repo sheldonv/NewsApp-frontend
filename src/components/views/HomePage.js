@@ -1,14 +1,12 @@
 import React, {useState, useEffect, useContext} from 'react'
 import './HomePage.css'
-import { Container, Button } from '@mui/material';
-import { Box } from '@mui/system';
+import { Container} from '@mui/material';
 import { Grid } from '@mui/material';
 import Articles from '../Articles';
 import { makeStyles } from '@mui/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import { TextField } from '@mui/material';
 import ColorModeContext from '../../context/ColorModeContext';
-import { GridApi } from '@mui/x-data-grid-pro';
 
 
 const fetchNews = async (url) => {

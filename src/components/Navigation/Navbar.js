@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useState, useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -11,34 +10,16 @@ import authContext from '../../context/authContext';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { ClassNames } from '@emotion/react';
 import { makeStyles } from '@mui/styles';
-import SettingsBrightnessRoundedIcon from '@mui/icons-material/SettingsBrightnessRounded';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
+
 import Switch from '@mui/material/Switch';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import { ListItemButton } from '@mui/material';
-import ContentCut from '@mui/icons-material/ContentCut';
-import ContentCopy from '@mui/icons-material/ContentCopy';
-import ContentPaste from '@mui/icons-material/ContentPaste';
-import Cloud from '@mui/icons-material/Cloud';
-import { margin } from '@mui/system';
+
 import ColorModeContext from '../../context/ColorModeContext';
 import SwipeableTemporaryDrawer from './SideDrawer';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+
 import { styled, alpha } from '@mui/material/styles';
-import EditIcon from '@mui/icons-material/Edit';
 import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import DeleteIcon from '@mui/icons-material/Delete';
+
 
  
 

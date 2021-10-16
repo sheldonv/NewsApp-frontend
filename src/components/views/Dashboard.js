@@ -12,9 +12,7 @@ import { Container } from '@mui/material';
 import { Grid } from '@mui/material';
 import Articles from '../Articles';
 import _ from 'lodash'
-import remove from 'lodash.remove'
 import './Dashboard.css'
-import { Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 const fetchData = async (url) => {
@@ -68,8 +66,7 @@ const fetchData = async (url) => {
 let categories = [];
 
 const Dashboard = () => {
-    const Auth = useContext(authContext);
-    const history = useHistory();
+    
     
     
   
@@ -81,7 +78,6 @@ const Dashboard = () => {
     const [categoryEmpty, setCategoryEmpty] = useState(false);
     const [categoryArray, setCategoryArray] = useState([])
     const classes = useStyles();
-    const ref = useRef(null)
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
   useEffect(async () => {
