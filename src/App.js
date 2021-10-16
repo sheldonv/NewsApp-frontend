@@ -42,6 +42,7 @@ function MyApp() {
 
     if (responseData) {
       if (responseData.firstName) {
+        console.log(responseData.firstName)
         Auth.logIn()
       }
 
