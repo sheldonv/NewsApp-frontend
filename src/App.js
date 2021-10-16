@@ -6,7 +6,7 @@ import HomePage from './components/views/HomePage';
 import Dashboard from './components/views/Dashboard';
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
+import {ThemeProvider, createTheme } from '@mui/material/styles';
 import ColorModeContext from './context/ColorModeContext';
 import { CssBaseline } from '@material-ui/core';
 import Footer from './components/Footer';
@@ -87,7 +87,6 @@ export default function ToggleColorMode() {
   const [mode, setMode] = React.useState('dark');
   const [loggedIn, setLoggedIn] = useState(false);
   const auth = useContext(authContext);
-  const [user, setUser] = useState({});
   useEffect(async () => {
     const response = await fetchData(`${process.env.REACT_APP_BACKEND_URL}/user`);
     const responseData = await response.json();
@@ -98,7 +97,7 @@ export default function ToggleColorMode() {
       }
 
 
-      setUser(responseData);
+      
     }
   }, []);
 
