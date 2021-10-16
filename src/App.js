@@ -148,7 +148,7 @@ export default function ToggleColorMode() {
       <ThemeProvider theme={theme}>
         <MyApp />
       </ThemeProvider>
-    </ColorModeContext.Provider>
+    </ColorModeContext.Provider> 
     </authContext.Provider>
   );
 }
