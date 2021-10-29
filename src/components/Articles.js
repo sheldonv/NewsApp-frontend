@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     cardActions: {
-      display: flexbox,
+      display: 'flex',
       justifyContent: 'space-between',
       width: '100%'
     },
