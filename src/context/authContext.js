@@ -1,15 +1,16 @@
 import {createContext} from 'react'
 
 const authContext = createContext({
-    loggedIn: false,
+    loggedIn: null,
     logOut: () => {
 
         },
     logIn: () => {
-        console.log('reached')
+    
     },
     firstVisit: false,
-    userId: null
+    userId: null,
+    user: {}
 })
 
 export default authContext

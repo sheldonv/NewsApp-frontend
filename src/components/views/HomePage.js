@@ -34,10 +34,15 @@ const useStyles = makeStyles({
         fontSize: '2em',
         height: '100%',
         outline: 'none',
-        border: '1px solid darkorange'
+        border: ''
     },
     searchIcon: {
       
+    },
+    welcome: {
+      textAlign: 'center',
+      fontSize: '24px',
+      fontWeight: '100'
     }
 });
 
@@ -81,10 +86,26 @@ const HomePage = (props) => {
         const responseData = await response.json()
         setArticles(responseData.articles)
     }
-    const gridRowStyling = {'& > div:not(:nth-child(4n))::after' : {width: '100%'}}
+    let gridRowStyling;
+    /*const rowStyling = () => {
+      if(window.innerWidth < 700)
+      console.log('resize')
+    }
+    window.onresize = rowStyling*/
+    if(window.innerWidth <= 600){
+      gridRowStyling = {'& > div:not(:nth-child(1n))::after' : {width: '100%'}}
+    }else if(window.innerWidth <= 800){
+      gridRowStyling = {'& > div:not(:nth-child(2n))::after' : {width: '100%'}}
+    }else if(window.innerWidth <= 900){
+      gridRowStyling = {'& > div:not(:nth-child(3n))::after' : {width: '100%'}}
+    }else{
+      gridRowStyling = {'& > div:not(:nth-child(4n))::after' : {width: '100%'}}
+    }
+
+    
     return (
-      <Container>
-        <div className="welcome"><h3>Todays Headlines</h3></div>
+      <Container fixed maxWidth style={{width: '100vw'}}>
+        <div className={classes.welcome}><h3 style={{fontWeight: 100}}>Todays Headlines</h3></div>
         <div className="searchBox">
           
           <form
@@ -98,6 +119,7 @@ const HomePage = (props) => {
               label="Search Todays News"
               variant="outlined"
               margin="none"
+              sx={{color: 'secondary'}}
               className={classes.textField}
               InputProps={{
                 className: classes.input,

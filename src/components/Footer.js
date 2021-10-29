@@ -8,11 +8,10 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     footer: {
-        color: 'text.primary',
         display: 'flex',
         backgroundColor: 'background.default',
         padding: '.5rem',
-        width: '96%',
+        width: '100%',
         flexDirection: 'column'
     },
     footerTop: {
@@ -21,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
+        borderBottom: '1px solid grey',
         [theme.breakpoints.up('600')]: {
             flexDirection: 'row',
             justifyContent: 'space-around'
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '1rem',
         height: '1px',
         border: '0',
-        borderTop: '1px solid orange',
+        borderTop: '',
         [theme.breakpoints.up('600')]: {
        
             margin: '0px'
@@ -95,7 +95,7 @@ const Footer = (props) => {
   return (
     <>
       
-      <div className={classes.footer}>
+      <div className={classes.footer} style={{color: '#5B92E5'}}>
           
         <div className={classes.footerTop}>
           <div className={classes.socialFooter}>

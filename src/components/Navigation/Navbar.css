@@ -1,0 +1,16 @@
+@media screen and (max-width: 959px) {
+    .menuItem {
+        display: none
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .logo {
+        width: 85%;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .logo {
+        width: 100%;
+    }
+  }

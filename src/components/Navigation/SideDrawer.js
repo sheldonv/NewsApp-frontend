@@ -13,13 +13,18 @@ import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import InfoIcon from '@mui/icons-material/Info';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles( (theme) => ({
     sideDrawer: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-    }
-})
+    },
+    drawer: {
+      [theme.breakpoints.up('960')]: {
+      display: 'none',
+    },
+  }
+}))
 
 const HOME  = () => (<HomeIcon />)
 const ADVANCED = () => (<ManageSearchIcon />)
@@ -94,7 +99,7 @@ export default function SwipeableTemporaryDrawer(props) {
   );
 
   return (
-    <div>
+    <div className={classes.drawer}>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{props.children}</Button>
