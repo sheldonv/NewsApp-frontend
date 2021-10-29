@@ -55,7 +55,8 @@ const useStyles = makeStyles((theme) => ({
     },
     cardActions: {
       display: flexbox,
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      width: '100%'
     },
     source: {
       textAlign: 'right'
