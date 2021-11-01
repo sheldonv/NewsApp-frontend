@@ -256,7 +256,7 @@ const Navbar = ({parentCallback}) => {
               className="menuItem"
             >
               <div className={classes.menuItem}>
-                <Link to="/" className={classes.menuItem}>
+                <Link to="/dashboard" className={classes.menuItem}>
                   Dashboard
                 </Link>
               </div>
