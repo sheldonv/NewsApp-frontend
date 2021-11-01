@@ -27,6 +27,9 @@ import {
 } from '@mui/material/colors';
 import Contact from './components/views/Contact';
 import { responsiveFontSizes } from '@mui/material';
+import About from './components/views/About';
+
+
 const fetchData = async (url) => {
   const response = await fetch(url, {
     method: 'GET',
@@ -38,10 +41,25 @@ const fetchData = async (url) => {
   return response;
 };
 let fragment;
+
+
+
 function MyApp(props) {
   let authenticated = false;
   const Auth = useContext(authContext);
   const [loggedIn, setLoggedIn] = useState(false);
+  //pass headerSize from Navbar to MyApp
+  const [headerHeight, setHeaderHeight] = useState(0);
+
+  const callback = useCallback((size) => {
+    console.log('callback', size)
+    setHeaderHeight(size);
+  }, []);
+
+  //getting size of header
+  let box = document.querySelector('.appBox');
+  
+  console.log(box)
 
   useEffect(async () => {
     const response = await fetchData(
@@ -76,9 +94,9 @@ function MyApp(props) {
         }}
       >
         <Router>
-          <Navbar />
+          <Navbar parentCallback={callback}/>
 
-          <main style={{ marginTop: '3rem' }}>
+          <main style={{ marginTop: headerHeight + 'px' }}>
             <Switch>
               {
                 <Route path="/" exact>
@@ -93,6 +111,9 @@ function MyApp(props) {
               }
               <Route path="/contact" exact>
                 <Contact />
+              </Route>
+              <Route path="/about" exact>
+                <About headerHeight={headerHeight}/>
               </Route>
               <Redirect to="/" exact />
             </Switch>

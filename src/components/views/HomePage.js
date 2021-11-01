@@ -7,7 +7,30 @@ import { makeStyles } from '@mui/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import { TextField } from '@mui/material';
 import ColorModeContext from '../../context/ColorModeContext';
+import styled from 'styled-components'
 
+const InputHolder = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  border-radius: 3px;
+`
+const Input = styled.input`
+  flex: 8;
+  height: 100%;
+  border: none;
+  padding-left: 20px;
+  font-size: 1.5rem;
+  outline: none;
+
+`
+const SearchButton = styled.button`
+  flex: 1;
+  height: 100%;
+  border: none;
+  background-color: #BBDEFB
+`
 
 const fetchNews = async (url) => {
     const response = await fetch(url, { 
@@ -54,9 +77,15 @@ const HomePage = (props) => {
     let iconColor = ''
     const colorMode = useContext(ColorModeContext)
     if(colorMode.color === 'light'){
-        iconColor = 'black'
+        iconColor = '#5B92E5'
     }else{
         iconColor = 'white'
+    }
+    let headerText;
+    if (colorMode.color == 'light') {
+      headerText = '#5B92E5';
+    } else {
+      headerText = '#007FFF';
     }
     // intiate useEffect to get Headlines news upon page load
     useEffect( async () => {
@@ -81,6 +110,9 @@ const HomePage = (props) => {
         setQuery(e.target.value)
     }
     const searchNews = async (e) => {
+        if(!query){
+          return
+        }
         e.preventDefault();
         const response = await fetchNews(`${process.env.REACT_APP_BACKEND_URL}/news/search/?query=${query}`);
         const responseData = await response.json()
@@ -105,7 +137,7 @@ const HomePage = (props) => {
     
     return (
       <Container fixed maxWidth style={{width: '100vw'}}>
-        <div className={classes.welcome}><h3 style={{fontWeight: 100}}>Todays Headlines</h3></div>
+        <div className={classes.welcome}><h3 style={{fontWeight: 100, color: headerText}}>Todays Headlines</h3></div>
         <div className="searchBox">
           
           <form
@@ -114,19 +146,15 @@ const HomePage = (props) => {
               searchNews(e);
             }}
           >
-            <TextField
-              id="outlined-basic"
-              label="Search Todays News"
-              variant="outlined"
-              margin="none"
-              sx={{color: 'secondary'}}
-              className={classes.textField}
-              InputProps={{
-                className: classes.input,
-                endAdornment: <SearchIcon className={classes.searchIcon} style={{'width': '3rem', 'fontSize': '2rem', 'color': iconColor}} onClick={(e) => {searchNews(e)}}/>,
-              }}
-              onChange={(e) => { updateQuery(e)}}
-            />
+            <InputHolder style={{border: '1px solid lightblue'}}>
+              <Input onChange={(e) => { updateQuery(e)}} placeholder="Search Today's Headlines" style={{color: '#07d'}} className='homeInputLight'/>
+              <SearchButton onClick={(e) => {
+                e.preventDefault();
+                searchNews(e);
+              }}>
+                <SearchIcon style={{'width': '3rem', 'fontSize': '2rem', 'color': iconColor}}/>
+              </SearchButton>
+            </InputHolder>
           </form>
         </div>
         <Grid  id="articlesGrid" container columnSpacing={2} rowSpacing={5}  sx={{gridRow: gridRowStyling}} >

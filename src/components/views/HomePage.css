@@ -9,3 +9,10 @@
 .MuiDataGrid-row{
     
 }
+.homeInputLight::placeholder{
+    color: #a3bde4;
+}
+
+.homeInputDark::placeholder{
+
+}
